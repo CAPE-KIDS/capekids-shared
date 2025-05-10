@@ -1,0 +1,20 @@
+{
+  "name": "capekids-shared",
+  "version": "1.0.0",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
+
