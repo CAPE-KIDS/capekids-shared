@@ -33,6 +33,7 @@ export const timelineStepMetadataSchema = z.object({
 export type TimelineStepMetadata = z.infer<typeof timelineStepMetadataSchema>;
 
 export const timelineStepSchema = z.object({
+  id: z.string().uuid().nullable(), // Nullable in frontend
   timelineId: z.string().uuid(),
   orderIndex: z.number().nullable(),
   type: stepTypeEnum,
