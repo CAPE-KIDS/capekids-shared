@@ -8,6 +8,7 @@ export type LoginSchemaType = z.infer<typeof loginSchema>;
 
 // profile
 export const participantMetadataSchema = z.object({
+  fullName: z.string(),
   age: z.number(),
   gender: z.string(),
   handedness: z.string().optional(),
@@ -110,3 +111,34 @@ export const registerSchema = z.object({
   }),
 });
 export type RegisterSchemaType = z.infer<typeof registerSchema>;
+
+export const userSchema = z.object({
+  id: z.string().uuid().nullable(), // Nullable in frontend
+  email: z.string().email(),
+  role: z.enum(["admin", "user"]),
+  profile: z.object({
+    fullName: z.string().nonempty(),
+    profileType: z.enum(["researcher", "psychologist", "participant"]),
+    metadata: z
+      .object({
+        researcher: researcherMetadataSchema.optional(),
+        psychologist: psychologistMetadataSchema.optional(),
+        participant: participantMetadataSchema.optional(),
+      })
+      .optional(),
+  }),
+});
+export type UserSchemaType = z.infer<typeof userSchema>;
+
+export const participantSchema = z.object({
+  id: z.string().uuid(),
+  email: z.string().email(),
+  profile: z.object({
+    fullName: z.string().nonempty(),
+    profileType: z.enum(["researcher", "psychologist", "participant"]),
+    metadata: z.object({
+      participant: participantMetadataSchema,
+    }),
+  }),
+});
+export type ParticipantSchemaType = z.infer<typeof participantSchema>;

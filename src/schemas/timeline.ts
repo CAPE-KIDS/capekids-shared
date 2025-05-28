@@ -1,19 +1,19 @@
 import { z } from "zod";
 
 export const timelineSchema = z.object({
+  id: z.string().uuid().nullable(), // Nullable in frontend
   sourceType: z.enum(["experiment", "task", "training"]),
   sourceId: z.string().uuid(),
 });
 export type TimelineSchemaType = z.infer<typeof timelineSchema>;
 
 export const stepEnumValues = [
-  "start",
-  "task",
-  "feedback",
-  "block",
-  "end",
-  "sequential_stimuli",
   "custom_block",
+  "task",
+  "conditional",
+  "sequential_stimuli",
+  // "simultaneous_stimuli",
+  "multi_trigger_stimuli",
 ] as const;
 
 export const stepTypeEnum = z.enum(stepEnumValues);
@@ -39,6 +39,7 @@ export const timelineStepSchema = z.object({
   type: stepTypeEnum,
   metadata: timelineStepMetadataSchema,
   taskVersionId: z.string().uuid().optional(),
+  step_id: z.string().uuid().optional(),
 });
 
 export type TimelineStep = z.infer<typeof timelineStepSchema>;

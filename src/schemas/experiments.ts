@@ -37,3 +37,31 @@ export const experimentSchemaWithTimeline = experimentSchema.extend({
 export type ExperimentSchemaWithTimelineType = z.infer<
   typeof experimentSchemaWithTimeline
 >;
+
+// export class CreateExperimentParticipantDto {
+//   @IsUUID()
+//   @ApiProperty({ example: 'b4b1bb70-1dc3-4d5f-a67b-123456789abc' })
+//   experimentId: string;
+
+//   @IsUUID()
+//   @ApiProperty({ example: 'd1d2cc50-3cb1-4c3b-93a3-987654321xyz' })
+//   userId: string;
+// }
+
+// export class UpdateExperimentParticipantDto {
+//   @IsOptional()
+//   @IsDateString()
+//   @ApiProperty({ example: '2025-03-18T12:30:00.000Z', required: false })
+//   completedAt?: Date;
+// }
+
+export const experimentParticipantSchema = z.object({
+  id: z.string().uuid().nullable(), // Nullable in frontend
+  experimentId: z.string().uuid(),
+  userId: z.string().uuid(),
+  completedAt: z.string().datetime().nullable(), // Nullable in frontend
+  createdAt: z.string().datetime().nullable(), // Nullable in frontend
+});
+export type ExperimentParticipantSchemaType = z.infer<
+  typeof experimentParticipantSchema
+>;
