@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc && tsc-esm-fix dist",
-    "prepare": "tsc"
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "",
