@@ -24,7 +24,8 @@ export const experimentSchema = z.object({
 });
 export type ExperimentSchemaType = z.infer<typeof experimentSchema>;
 
-export const experimentSchemaWithTimeline = experimentSchema.extend({
+export const experimentSchemaWithTimeline = z.object({
+  experiment: experimentSchema,
   timeline: z.object({
     id: z.string().uuid(),
     sourceType: z.enum(["experiment", "task", "training"]),
