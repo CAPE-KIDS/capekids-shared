@@ -19,7 +19,8 @@ export const taskSchema = z.object({
 });
 export type TaskSchemaType = z.infer<typeof taskSchema>;
 
-export const taskSchemaWithTimeline = taskSchema.extend({
+export const taskSchemaWithTimeline = z.object({
+  task: taskSchema,
   timeline: z.object({
     id: z.string().uuid(),
     sourceType: z.enum(["experiment", "task", "training"]),
