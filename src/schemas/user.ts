@@ -8,7 +8,6 @@ export type LoginSchemaType = z.infer<typeof loginSchema>;
 
 // profile
 export const participantMetadataSchema = z.object({
-  fullName: z.string(),
   age: z.number(),
   gender: z.string(),
   handedness: z.string().optional(),
