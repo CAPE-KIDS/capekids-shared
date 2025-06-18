@@ -14,7 +14,13 @@ export type CreateExperimentSchemaType = z.infer<typeof createExperimentSchema>;
 
 export const experimentSchema = z.object({
   id: z.string().uuid(),
-  creatorId: z.string().uuid(),
+  creator: z.object({
+    id: z.string().uuid(),
+    name: z.string(),
+    email: z.string().email(),
+    role: z.enum(["admin", "user"]),
+    deleted_at: z.string().datetime().nullable(), // Nullable in frontend
+  }),
   status: z.enum(["draft", "active", "closed", "archived"]),
   title: z.string(),
   description: z.string(),
